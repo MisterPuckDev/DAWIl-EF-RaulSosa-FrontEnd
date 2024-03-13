@@ -1,0 +1,91 @@
+<div class="container">
+    <form class="mat-dialog-content" id="idFormModalidad" [formGroup]="formsRegistra">
+        <div class="row">
+            <mat-toolbar style="background-color: #1b9144;">
+                <span>Registra Ticket</span>
+            </mat-toolbar>
+        </div>
+        <div class="row" style="margin-top: 3%">
+
+            <mat-form-field class="col-md-12">
+                <mat-label>Titulo</mat-label>
+                <input matInput [(ngModel)]="tickets.title" name="title"
+                       formControlName="validateTitle" maxlength="100">
+                <mat-hint style="color: red" *ngIf="formsRegistra.controls.validateTitle.touched">
+            <span *ngIf="formsRegistra.controls.validateTitle.hasError('required')">
+                  El titulo es requerido
+            </span>
+                </mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-12">
+                <mat-label>Descripción</mat-label>
+                <input matInput [(ngModel)]="tickets.description" name="description"
+                       formControlName="validateDescription" maxlength="100">
+                <mat-hint style="color: red" *ngIf="formsRegistra.controls.validateDescription.touched">
+            <span *ngIf="formsRegistra.controls.validateDescription.hasError('required')">
+                  La descripción es requerido
+            </span>
+                </mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-12">
+                <mat-label>Tipo</mat-label>
+                <mat-select formControlName="validateKind" (selectionChange)="changeKind($event.value)">
+                    <mat-option value="">[Seleccione]</mat-option>
+                    <mat-option *ngFor="let kind of kinds" [value]="kind.id">{{kind.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-12">
+                <mat-label>Usuario</mat-label>
+                <mat-select formControlName="validateUser" (selectionChange)="changeUser($event.value)">
+                    <mat-option value="">[Seleccione]</mat-option>
+                    <mat-option *ngFor="let user of users" [value]="user.id">{{user.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-12">
+                <mat-label>Proyecto</mat-label>
+                <mat-select formControlName="validateProject" (selectionChange)="changeProject($event.value)">
+                    <mat-option value="">[Seleccione]</mat-option>
+                    <mat-option *ngFor="let project of projects" [value]="project.id">{{project.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-12">
+                <mat-label>Categoría</mat-label>
+                <mat-select formControlName="validateCategory" (selectionChange)="changeCategory($event.value)">
+                    <mat-option value="">[Seleccione]</mat-option>
+                    <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-12">
+                <mat-label>Prioridad</mat-label>
+                <mat-select formControlName="validatePriority" (selectionChange)="changePriority($event.value)">
+                    <mat-option value="">[Seleccione]</mat-option>
+                    <mat-option *ngFor="let priority of priorities" [value]="priority.id">{{priority.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-12">
+                <mat-label>Estado</mat-label>
+                <mat-select formControlName="validateStatus" (selectionChange)="changeStatus($event.value)">
+                    <mat-option value="">[Seleccione]</mat-option>
+                    <mat-option *ngFor="let status of statuss" [value]="status.id">{{status.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <div mat-dialog-actions>
+                <button mat-raised-button type="submit" (click)="add()" color="primary"
+                        [disabled]="formsRegistra.invalid">Registrar
+                </button>
+                <button mat-button color="primary" (click)="exit()">Salir</button>
+            </div>
+        </div>
+    </form>
+
+</div>

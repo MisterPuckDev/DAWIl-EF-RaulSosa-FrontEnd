@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Login | Sistema de Tickets</title>
+    <link rel="icon" href="assets/pasteleria-dulzura-logo.png"/>
+</head>
+<body>
+<div class="container">
+    <h1 style="text-align: center">Sistema de Tickets</h1>
+    <div class="logo-container">
+        <img src="assets/best-ticketing-tool.png"/>
+    </div>
+    <form class="login-form" method="post" [formGroup]="loginForm">
+        <h2>Iniciar Sesión</h2>
+        <input type="text" class="form-control" placeholder="Ingresa tu usuario" formControlName="username" required>
+        <input type="password" class="form-control" placeholder="Ingresa tu contraseña" formControlName="password" required>
+        <button type="submit" (click)="login()" class="btn text-white custom-bg">Ingresar</button>
+        <br><br>
+    </form>
+</div>
+</body>
+</html>

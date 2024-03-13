@@ -1,0 +1,75 @@
+<div>
+
+    <div class="row">
+        <mat-toolbar style="background-color: #1b9144;">
+            <span>Lista de Tickets</span>
+        </mat-toolbar>
+    </div>
+
+    <div class="row" style="margin-top: 3%">
+        <button mat-raised-button color="primary" type="button" (click)="openAddDialog()" class='btn btn-primary btn-sm'
+                id="id_btn_registrar" style="width: 200px">Registrar Ticket
+        </button>
+    </div>
+
+    <div class="row" style="margin-top: 3%">
+        <mat-table #table class="mat-cell" [dataSource]="dataSource">
+            <ng-container matColumnDef="id">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.id }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="title">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Título</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.title }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="description">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Descripción</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.description }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="kind">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Tipo</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.kind.name }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="user">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Usuario</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.user.name }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="project" class="columna-correo">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Proyecto</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.project.name }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="category">
+                <mat-header-cell *matHeaderCellDef>Categoría</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.category.name }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="priority">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Prioridad</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.priority.name }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.status.name }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+
+                <mat-cell *matCellDef="let aux; let i=index;">
+
+                    <button mat-icon-button color="accent" id="btn_editar" (click)="openUpdateDialog(aux)">
+                        <mat-icon aria-label="Edit">edit</mat-icon>
+                    </button>
+
+                    <button mat-icon-button color="accent" id="btn_eliminar" (click)="elimina(aux)">
+                        <mat-icon aria-label="Delete">delete</mat-icon>
+                    </button>
+
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+        </mat-table>
+
+    </div>
+
+</div>
